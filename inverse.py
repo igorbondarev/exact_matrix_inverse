@@ -90,7 +90,7 @@ for k in range(m - 1):
 print "Calc Z"
 print "******"
 
-for k in range(5):
+for k in range(6):
 	Z = Z + (p ** k) * xkp[k]
 
 print Z
