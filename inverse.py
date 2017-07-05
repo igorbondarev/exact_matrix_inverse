@@ -42,20 +42,16 @@ def matrix_by_mod(m, modulo, n):
 		for j in range(n):
 			m[i][j] = mod(m[i][j], modulo)
 		
-#print "Matrix A:"
-#print_matrix(mat, dimension)
-#print "Vector b:"
-#print_vector(b, dimension)
-#print "Ap:"
-#matrix_by_mod(mat, p, dimension)
-#print_matrix(mat, dimension)
+print "Matrix A:"
+print mat
+print "Vector b:"
+print b
+print "Ap:"
+matrix_by_mod(mat, p, dimension)
+print mat
 
-A = Matrix([
-    [0,2],
-    [1,3]
-])
-
-#Find inverse of A modulo 26
+A = Matrix(mat)
 A_inv = A.inv_mod(5)
-pprint(A_inv)
-
+new_mat = [[A_inv[y, x] for x in range(dimension)] for y in range(dimension)]
+print "Cp:"
+print new_mat
