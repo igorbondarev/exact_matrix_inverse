@@ -94,3 +94,32 @@ for k in range(6):
 	Z = Z + (p ** k) * xkp[k]
 
 print Z
+
+def restore(vecz):
+	u = []
+	v = []
+
+	u.append(p ** 6)
+	u.append(vecz[0])
+
+	v.append(0)
+	v.append(1)
+
+	k = 1
+
+	print "start restoring"
+
+	while u[k] >= p ** (6 / 2):
+		print "Iteration"
+		q = u[k - 1] // u[k]
+		print q
+		u.append(u[k - 1] - q * u[k])
+		print u[k + 1]
+		v.append(v[k - 1] + q * v[k])
+		print v[k + 1]
+		k = k + 1
+
+	print (-1) ** (k - 1) * u[k] / v[k]
+
+
+restore(Z)
