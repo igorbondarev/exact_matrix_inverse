@@ -1,22 +1,13 @@
 from sympy import Matrix, pprint
 
-dimension = 3
-
-mat = [[0 for x in range(dimension)] for y in range(dimension)]
 p   = 5
 m   = 10
 
-mat[0][0] = 4
-mat[0][1] = 1
-mat[0][2] = 1
+mat = [ [4, 1, 1],
+	[1, 4, 1],
+	[1, 1, 4] ]
 
-mat[1][0] = 1
-mat[1][1] = 4
-mat[1][2] = 1
-
-mat[2][0] = 1
-mat[2][1] = 1
-mat[2][2] = 4
+dimension = len(mat)
 
 def mod(val, m):
 	if val == 0:
