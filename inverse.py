@@ -1,19 +1,22 @@
 from sympy import Matrix, pprint
 
-dimension = 2
+dimension = 3
 
 mat = [[0 for x in range(dimension)] for y in range(dimension)]
-b   = [0 for x in range(dimension)]
 p   = 5
 m   = 10
 
-mat[0][0] = -10
-mat[0][1] = 12
-mat[1][0] = 16
-mat[1][1] = -27
+mat[0][0] = 4
+mat[0][1] = 1
+mat[0][2] = 1
 
-b[0] = 0
-b[1] = 1
+mat[1][0] = 1
+mat[1][1] = 4
+mat[1][2] = 1
+
+mat[2][0] = 1
+mat[2][1] = 1
+mat[2][2] = 4
 
 def mod(val, m):
 	if val == 0:
@@ -45,7 +48,6 @@ A = Matrix(mod_matrix)
 A_inv = A.inv_mod(5)
 new_mat = [[A_inv[y, x] for x in range(len(mat))] for y in range(len(mat))]
 
-
 def calc_vec_z(vec_b):
 
 	bk =  [0 for x in range(m + 1)]
@@ -54,8 +56,9 @@ def calc_vec_z(vec_b):
 	Matrix_Cp = Matrix(new_mat)
 	Matrix_A = Matrix(mat)
 	bk[0] = Matrix(vec_b)
-	Z = Matrix([[0], [0]])
 
+	Z_vec =  [0 for x in range(dimension)]
+	Z = Matrix(Z_vec)
 
 	for k in range(m):
 		bkp[k] = vec_by_mod(bk[k], p)
