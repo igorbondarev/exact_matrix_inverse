@@ -12,8 +12,8 @@ mat[0][1] = 12
 mat[1][0] = 16
 mat[1][1] = -27
 
-b[0] = -4
-b[1] = 8
+b[0] = 1
+b[1] = 0
 
 def print_matrix(m, n):
 	for i in range(n):
@@ -96,30 +96,25 @@ for k in range(6):
 print Z
 
 def restore(vecz):
-	u = []
-	v = []
+	for val in vecz:
+		u = []
+		v = []
 
-	u.append(p ** 6)
-	u.append(vecz[0])
+		u.append(p ** 6)
+		u.append(val)
 
-	v.append(0)
-	v.append(1)
+		v.append(0)
+		v.append(1)
 
-	k = 1
+		k = 1
 
-	print "start restoring"
+		while u[k] >= p ** (6 / 2):
+			q = u[k - 1] // u[k]
+			u.append(u[k - 1] - q * u[k])
+			v.append(v[k - 1] + q * v[k])
+			k = k + 1
 
-	while u[k] >= p ** (6 / 2):
-		print "Iteration"
-		q = u[k - 1] // u[k]
-		print q
-		u.append(u[k - 1] - q * u[k])
-		print u[k + 1]
-		v.append(v[k - 1] + q * v[k])
-		print v[k + 1]
-		k = k + 1
-
-	print (-1) ** (k - 1) * u[k] / v[k]
+		print (-1) ** (k - 1) * u[k] / v[k]
 
 
 restore(Z)
