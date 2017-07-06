@@ -46,14 +46,14 @@ A_inv = A.inv_mod(5)
 new_mat = [[A_inv[y, x] for x in range(len(mat))] for y in range(len(mat))]
 
 
-def calc_vec_z():
+def calc_vec_z(vec_b):
 
 	bk =  [0 for x in range(m + 1)]
 	bkp = [0 for x in range(m + 1)]
 	xkp = [0 for x in range(m + 1)]
 	Matrix_Cp = Matrix(new_mat)
 	Matrix_A = Matrix(mat)
-	bk[0] = Matrix(b)
+	bk[0] = Matrix(vec_b)
 	Z = Matrix([[0], [0]])
 
 
@@ -61,9 +61,6 @@ def calc_vec_z():
 		bkp[k] = vec_by_mod(bk[k], p)
 		xkp[k] = vec_by_mod(Matrix_Cp * bkp[k], p)
 		bk[k + 1] = (bk[k] - Matrix_A * xkp[k]) / p
-
-	print "Calc Z"
-	print "******"
 
 	for k in range(m):
 		Z = Z + (p ** k) * xkp[k]
@@ -90,7 +87,9 @@ def restore(vecz):
 			k = k + 1
 
 		print (-1) ** (k - 1) * u[k] / v[k]
+	print "****"
 
-
-Z_vec = calc_vec_z()
-restore(Z_vec)
+for d in range(len(mat)):
+	local_b = [(0 + (x == d)) for x in range(len(mat))]
+	Z_vec = calc_vec_z(local_b)
+	restore(Z_vec)
