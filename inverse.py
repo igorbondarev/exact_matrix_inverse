@@ -39,23 +39,13 @@ def vec_by_mod(vec, modulo):
 		ret[i] = mod(vec[i], modulo)
 	return Matrix(ret)
 		
-print "Matrix A:"
-print mat
-print "Vector b:"
-print b
-print "Ap:"
 mod_matrix = matrix_by_mod(mat, p)
-print mat
 
 A = Matrix(mod_matrix)
 A_inv = A.inv_mod(5)
 new_mat = [[A_inv[y, x] for x in range(len(mat))] for y in range(len(mat))]
-print "Cp:"
-print new_mat
 
-print "Starting math"
-print "*************"
-print ""
+
 
 bk =  [0 for x in range(m + 1)]
 bkp = [0 for x in range(m + 1)]
@@ -70,11 +60,6 @@ for k in range(m):
 	bkp[k] = vec_by_mod(bk[k], p)
 	xkp[k] = vec_by_mod(Matrix_Cp * bkp[k], p)
 	bk[k + 1] = (bk[k] - Matrix_A * xkp[k]) / p
-
-	print k
-	print bkp[k]
-	print xkp[k]
-	print bk[k + 1]
 
 print "Calc Z"
 print "******"
