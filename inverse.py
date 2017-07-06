@@ -1,11 +1,14 @@
 from sympy import Matrix, pprint
 
-p   = 5
-m   = 10
+p   = 1999993
+m   = 8
 
-mat = [ [4, 1, 1],
-	[1, 4, 1],
-	[1, 1, 4] ]
+
+n = 20
+mat = [[1 for x in range(n)] for y in range(n)]
+for nn in range(n):
+	mat[nn][nn] = n + 1
+
 
 dimension = len(mat)
 
@@ -36,7 +39,8 @@ def vec_by_mod(vec, modulo):
 mod_matrix = matrix_by_mod(mat, p)
 
 A = Matrix(mod_matrix)
-A_inv = A.inv_mod(5)
+
+A_inv = A.inv_mod(p)
 new_mat = [[A_inv[y, x] for x in range(len(mat))] for y in range(len(mat))]
 
 def calc_vec_z(vec_b):
