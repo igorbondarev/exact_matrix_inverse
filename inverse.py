@@ -12,8 +12,8 @@ mat[0][1] = 12
 mat[1][0] = 16
 mat[1][1] = -27
 
-b[0] = 1
-b[1] = 0
+b[0] = 0
+b[1] = 1
 
 def mod(val, m):
 	if val == 0:
@@ -57,16 +57,16 @@ print "Starting math"
 print "*************"
 print ""
 
-bk =  [0 for x in range(m)]
-bkp = [0 for x in range(m)]
-xkp = [0 for x in range(m)]
+bk =  [0 for x in range(m + 1)]
+bkp = [0 for x in range(m + 1)]
+xkp = [0 for x in range(m + 1)]
 Matrix_Cp = Matrix(new_mat)
 Matrix_A = Matrix(mat)
 bk[0] = Matrix(b)
 Z = Matrix([[0], [0]])
 
 
-for k in range(m - 1):
+for k in range(m):
 	bkp[k] = vec_by_mod(bk[k], p)
 	xkp[k] = vec_by_mod(Matrix_Cp * bkp[k], p)
 	bk[k + 1] = (bk[k] - Matrix_A * xkp[k]) / p
@@ -79,7 +79,7 @@ for k in range(m - 1):
 print "Calc Z"
 print "******"
 
-for k in range(6):
+for k in range(m):
 	Z = Z + (p ** k) * xkp[k]
 
 print Z
@@ -89,7 +89,7 @@ def restore(vecz):
 		u = []
 		v = []
 
-		u.append(p ** 6)
+		u.append(p ** m)
 		u.append(val)
 
 		v.append(0)
@@ -97,7 +97,7 @@ def restore(vecz):
 
 		k = 1
 
-		while u[k] >= p ** (6 / 2):
+		while u[k] >= p ** (m / 2):
 			q = u[k - 1] // u[k]
 			u.append(u[k - 1] - q * u[k])
 			v.append(v[k - 1] + q * v[k])
