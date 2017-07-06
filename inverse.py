@@ -15,17 +15,6 @@ mat[1][1] = -27
 b[0] = 1
 b[1] = 0
 
-def print_matrix(m, n):
-	for i in range(n):
-		for j in range(n):
-			print m[i][j],
-		print ""
-
-def print_vector(v, n):
-	for i in range(n):
-		print v[i],
-	print ""
-
 def mod(val, m):
 	if val == 0:
 		return 0
@@ -37,10 +26,10 @@ def mod(val, m):
 	if val > 0:
 		return val % m
 
-def matrix_by_mod(m, modulo, n):
-	ret = [[0 for x in range(dimension)] for y in range(dimension)]
-	for i in range(n):
-		for j in range(n):
+def matrix_by_mod(m, modulo):
+	ret = [[0 for x in range(len(m))] for y in range(len(m))]
+	for i in range(len(m)):
+		for j in range(len(m)):
 			ret[i][j] = mod(m[i][j], modulo)
 	return ret
 
@@ -55,12 +44,12 @@ print mat
 print "Vector b:"
 print b
 print "Ap:"
-mod_matrix = matrix_by_mod(mat, p, dimension)
+mod_matrix = matrix_by_mod(mat, p)
 print mat
 
 A = Matrix(mod_matrix)
 A_inv = A.inv_mod(5)
-new_mat = [[A_inv[y, x] for x in range(dimension)] for y in range(dimension)]
+new_mat = [[A_inv[y, x] for x in range(len(mat))] for y in range(len(mat))]
 print "Cp:"
 print new_mat
 
